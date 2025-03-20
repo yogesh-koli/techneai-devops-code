@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: UI Compare Images
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: UI Compare Images
+  template:
+    metadata:
+      labels:
+          app: UI Compare Images
+    spec:
+      containers:
+        - name: frontend
+          image: yogesh114/Alignment Detection:latest
+          ports:
+            - containerPort: 8080
+        - name: backend
+          image: yogesh114/Element Detection:latest
+          ports:
+            - containerPort: 80
+        - name: api
+          image: yogesh114/Font Detection:latest
+        - name: worker
+          image: yogesh114/Label&text:latest
+        - name: worker
+          image: yogesh114/Label Sequence:latest
+        - name: worker
+          image: yogesh114/spell check:latest
